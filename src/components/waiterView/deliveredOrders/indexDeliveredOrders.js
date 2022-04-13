@@ -23,7 +23,6 @@ const DeliveredOrders = () => {
   const colorTab = '/waiterDelivered';
 
   const buttonHandler = () => {
-    console.log('a ver');
     if (tableOrderKitchen === undefined) {
       modalAlert('Selecciona un pedido');
       return;

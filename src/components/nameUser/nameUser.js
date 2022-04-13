@@ -8,7 +8,7 @@ import { AuthSession } from '../../context/context.js';
 export function User () {
   const Navigate = useNavigate();
   const { user } = useContext(AuthSession);
-  console.log('user', user);
+  // console.log('user', user);
 
   const logOutSesion = () => {
     logOut(auth)

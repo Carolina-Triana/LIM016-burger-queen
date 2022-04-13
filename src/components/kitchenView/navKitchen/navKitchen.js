@@ -1,13 +1,12 @@
 import { React, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDocsInRealTime } from '../../../api/api';
+import { useDocsInRealTime } from '../../../utils/utils';
 import { onDataOrderChange } from '../../../firebase/firestore';
 import { AuthSession } from '../../../context/context';
 
 export function NavKitchen (props) { // Data de firebase
   const { user } = useContext(AuthSession);
   const Navigate = useNavigate();
-
   const viewTab = (event) => {
     const element = event.target;
     const elementPath = element.dataset.name;

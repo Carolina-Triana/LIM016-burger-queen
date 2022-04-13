@@ -4,15 +4,14 @@ import { NavKitchen } from '../navKitchen/navKitchen';
 import { OrderList } from '../../orders/orderList';
 import { OrderButtons } from '../../orders/orderButtons';
 import { Ticket } from '../../ticket/ticket';
-import { useDocsInRealTime } from '../../../api/api';
+import { useDocsInRealTime } from '../../../utils/utils';
 import { onDataOrderChange } from '../../../firebase/firestore';
-import { SelectAnOrder } from '../../selectItem.js/selectOrder';
+import { SelectAnOrder } from '../../selectItem/selectOrder';
 
 const KitchenDelivered = () => {
   const items = useDocsInRealTime(onDataOrderChange('COMPLETADO'));
   const [tableOrderKitchen, setTableOrderKitchen] = useState(undefined);
-  const capturingTableToDisplayOrderInTable = (index) => setTableOrderKitchen(index);
-
+  const capturingIndexToDisplayOrderInTable = (index) => setTableOrderKitchen(index);
   const colorTab = '/kitchenDelivered';
 
   return (
@@ -29,7 +28,7 @@ const KitchenDelivered = () => {
                   text={item.data.table}
                   time={item.data.init_time}
                   seconds={item.data.seconds}
-                  onClick={() => capturingTableToDisplayOrderInTable(index)}
+                  onClick={() => capturingIndexToDisplayOrderInTable(index)}
 
                 />
               </>

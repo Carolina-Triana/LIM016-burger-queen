@@ -1,7 +1,7 @@
 import React from 'react';
 import './menu.css';
 import { Button } from './button';
-import { filterMenuByCategory, getAllCategories } from '../../../../api/api';
+import { filterMenuByCategory, getAllCategories } from '../../../../utils/utils';
 
 const MenuBar = ({ setMenuValue }) => {
   const onSearchValueChange = (event) => {

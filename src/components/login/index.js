@@ -2,13 +2,12 @@ import { React, useState } from 'react';
 import InputForm from './input.js';
 import { Button, Error } from './button.js';
 import { loginWithEmailAndPassword } from '../../firebase/auth';
-import { findingUser, collectionUser } from '../../firebase/firestore.js';
+import { findingUser } from '../../firebase/firestore.js';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 function Login () {
   const Navigate = useNavigate();
-
   const [data, setData] = useState({
     email: '',
     password: ''
@@ -29,12 +28,14 @@ function Login () {
           data.email ? 'Ingrese su contraseña' : 'Ingrese su correo'
         );
       }
-      const userFirebase = await loginWithEmailAndPassword(
+
+      // REVISAR ESTA FUNCION Y REFACTORIZAR CON APP
+      const userAuth = await loginWithEmailAndPassword(
         data.email,
         data.password
       );
 
-      const dataUser = await findingUser(userFirebase.user.uid, collectionUser);
+      const dataUser = await findingUser(userAuth.user.uid);
       const userToCreate = {
         nombre: dataUser.nombre,
         correo: dataUser.correo,

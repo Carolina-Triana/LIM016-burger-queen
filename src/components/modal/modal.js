@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './modal.css';
 
 const Modal = ({ onClick, closeModalMenu, text }) => {
-  return ReactDOM.createPortal(
+  return ReactDOM.createPortal( // revisar este metodo
 
         <section className={'modal-father'}>
             <div className={'container-modal'}>

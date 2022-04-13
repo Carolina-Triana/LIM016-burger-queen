@@ -1,15 +1,15 @@
 import { React, useState, useContext } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { User } from '../../nameUser/nameUser';
 import { WaiterNavBar } from '../sectionTabs/waiterNavBar';
 import { OrderList } from '../../orders/orderList';
 import { OrderButtons } from '../../orders/orderButtons';
 import { Ticket } from '../../ticket/ticket';
-import { useDocsInRealTime } from '../../../api/api';
+import { useDocsInRealTime, modalAlert } from '../../../utils/utils';
 import { onDataOrderChangeByWorker, updateOrder } from '../../../firebase/firestore';
 import { ButtonOrderDelivered } from './buttonDelivered';
 import { Modal } from '../../modal/modal';
-import { SelectAnOrder } from '../../selectItem.js/selectOrder';
+import { SelectAnOrder } from '../../selectItem/selectOrder';
 import { AuthSession } from '../../../context/context';
 import './indexDeliveredOrders.css';
 
@@ -22,48 +22,23 @@ const DeliveredOrders = () => {
   const [modalDeleteOrder, setModalDeleteOrder] = useState(false);
   const colorTab = '/waiterDelivered';
 
-  const openModal = () => setModalDeleteOrder(true);
-  const closeModal = () => setModalDeleteOrder(false);
-  const modalDeleteOrderFirebase = () => {
+  const buttonHandler = () => {
+    console.log('a ver');
     if (tableOrderKitchen === undefined) {
-      toast.error('NO TIENES PEDIDOS LISTOS', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-        type: 'default',
-        pading: 30
-      });
+      modalAlert('Selecciona un pedido');
       return;
     }
-
-    openModal();
+    setModalDeleteOrder(true);
   };
 
-  const orderDeleveredModal = () => {
-    toast.warn('¡Servicio completado!', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-      type: 'default',
-      pading: 30
-    });
-
+  const orderDeliveredModal = () => {
+    modalAlert('¡Servicio completado!');
     updateOrder(items[tableOrderKitchen].id, {
       state: 'ENTREGADO'
     });
 
     setTableOrderKitchen(undefined);
-    closeModal();
+    setModalDeleteOrder(false);
   };
 
   return (
@@ -90,12 +65,8 @@ const DeliveredOrders = () => {
                     })}
                 </OrderList>
                 {tableOrderKitchen !== undefined ? <Ticket items={items[tableOrderKitchen].data} /> : <SelectAnOrder/>}
-
-                <ButtonOrderDelivered
-                    onClick={modalDeleteOrderFirebase}
-                    text="ENTREGADO"
-                />
-                {modalDeleteOrder ? <Modal onClick={orderDeleveredModal} closeModalMenu={closeModal} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} fue entregado?`} /> : ''}
+                <ButtonOrderDelivered onClick={buttonHandler} text="ENTREGADO"/>
+                {modalDeleteOrder ? <Modal onClick={orderDeliveredModal} closeModalMenu={setModalDeleteOrder(false)} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} fue entregado?`} /> : ''}
             </section>
             <ToastContainer />
         </>

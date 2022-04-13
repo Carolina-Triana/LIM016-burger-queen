@@ -1,10 +1,8 @@
 import { React, useContext } from 'react';
 import { auth, logOut } from '../../firebase/auth.js';
 import { ButtonClose } from './buttonClose';
-
 import { useNavigate } from 'react-router-dom';
 import './nameUser.css';
-
 import { AuthSession } from '../../context/context.js';
 
 export function User () {

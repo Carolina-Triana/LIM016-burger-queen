@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { React, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDocsInRealTime } from '../../../api/api';
+import { useDocsInRealTime } from '../../../utils/utils';
 import { onDataOrderChangeByWorker } from '../../../firebase/firestore';
 import { AuthSession } from '../../../context/context';
 import './waiterNavBar.css';

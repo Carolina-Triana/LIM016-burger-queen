@@ -1,15 +1,13 @@
 import { React, useState, useContext } from 'react';
 import { User } from '../../nameUser/nameUser';
 import { WaiterNavBar } from '../sectionTabs/waiterNavBar';
-// import { OrderList } from "../orders/orderList";
-import { useDocsInRealTime } from '../../../api/api';
+import { useDocsInRealTime } from '../../../utils/utils';
 import { onDataOrderChangeByWorker } from '../../../firebase/firestore';
-// import { ProductsList } from "../index/productList/productsList";
 import { OrderList } from '../../orders/orderList';
 import { OrderButtonsTimer } from '../../../components/orders/orderButtonTimer';
 import { Ticket } from '../../ticket/ticket';
 import { AuthSession } from '../../../context/context';
-import { SelectAnOrder } from '../../selectItem.js/selectOrder';
+import { SelectAnOrder } from '../../selectItem/selectOrder';
 import './indexPendingOrders.css';
 
 const PendingOrders = () => {

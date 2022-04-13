@@ -9,7 +9,7 @@ export const collectionUser = collection(db, 'usuarios');
 const collectionOrder = collection(db, 'order');
 
 // Guarda las ordenes en Firestore
-export const orderToSaveInFirebase = async (newOrder) => {
+export const saveOrderInCollection = async (newOrder) => {
   try {
     const savingOrder = await addDoc(collectionOrder, newOrder);
     return savingOrder;
@@ -20,9 +20,9 @@ export const orderToSaveInFirebase = async (newOrder) => {
 };
 
 // Consigue la data del usuario
-export const findingUser = async (userId, colllection) => {
+export const findingUser = async (userId) => {
   try {
-    const documentUserRef = doc(colllection, userId);
+    const documentUserRef = doc(collectionUser, userId);
     const userDocument = await getDoc(documentUserRef);
     const user = userDocument.data();
 

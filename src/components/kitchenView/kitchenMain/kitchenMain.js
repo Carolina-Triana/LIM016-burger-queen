@@ -1,78 +1,40 @@
 import { React, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { User } from '../../nameUser/nameUser';
 import { NavKitchen } from '../navKitchen/navKitchen';
 import { OrderList } from '../../orders/orderList';
 import { OrderButtonsTimer } from '../../orders/orderButtonTimer';
 import { Ticket } from '../../ticket/ticket';
 import { onDataOrderChange, updateOrder } from '../../../firebase/firestore';
-import { useDocsInRealTime/*, useOrderTime */ } from '../../../api/api';
-// import { ButtonOrder } from '../../buttonOpenModal-close/buttonOrder';
+import { useDocsInRealTime, modalAlert } from '../../../utils/utils';
 import { ButtonOrderDelivered } from '../../waiterView/deliveredOrders/buttonDelivered';
 import { Modal } from '../../modal/modal';
-
-import { SelectAnOrder } from '../../selectItem.js/selectOrder';
+import { SelectAnOrder } from '../../selectItem/selectOrder';
 
 const KitchenMain = () => {
   const colorTab = '/kitchenMain';
   const items = useDocsInRealTime(onDataOrderChange('PENDIENTE'));
   const [tableOrderKitchen, setTableOrderKitchen] = useState(undefined);
   const [showModalCompleted, setShowModalCompleted] = useState(false);
-  // const [timer, setTimer] = useState(0)
-
   const capturingTableKitchenWithAnEvent = (index) => {
-    // const minutes = ((Date.now()/1000)-items[index].data.init_time)/60
-    // console.log(Math.floor(minutes))
     setTableOrderKitchen(index);
   };
 
-  // const timerUpdate = (date) => {
-  //   const minutes = Math.floor(((Date.now()/1000)-date)/60)
-  //   return(minutes)
-  // }
-
-  const openModal = () => setShowModalCompleted(true);
-  const closeModal = () => setShowModalCompleted(false);
-
-  const firebaseCollectionStatusChange = () => {
+  const openModal = () => {
     if (tableOrderKitchen === undefined) {
-      toast.error('Selecciona algun pedido', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-        type: 'default',
-        pading: 30
-      });
+      modalAlert('Selecciona algun pedido');
       return;
     }
-
-    openModal();
+    setShowModalCompleted(true);
   };
 
-  const completed = () => {
-    toast.warn('¡La orden se envio a pedidos listos!', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-      type: 'default',
-      pading: 30
-    });
-
+  const updateOrderAndCloseModal = () => {
+    modalAlert('¡La orden se envio a pedidos listos!');
     updateOrder(items[tableOrderKitchen].id, {
       state: 'COMPLETADO'
     });
     setTableOrderKitchen(undefined);
-    closeModal();
+    setShowModalCompleted(false);
   };
 
   return (
@@ -102,11 +64,11 @@ const KitchenMain = () => {
         {tableOrderKitchen !== undefined ? <Ticket items={items[tableOrderKitchen].data} /> : <SelectAnOrder/>}
 
         <ButtonOrderDelivered
-          onClick={firebaseCollectionStatusChange}
+          onClick={openModal}
           text="LISTO"
         />
 
-        {showModalCompleted ? <Modal onClick={completed} closeModalMenu={closeModal} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} esta listo?`} /> : ''}
+        {showModalCompleted ? <Modal onClick={updateOrderAndCloseModal} closeModalMenu={setShowModalCompleted(false)} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} esta listo?`} /> : ''}
 
       </section>
       <ToastContainer />

@@ -52,7 +52,6 @@ export const verifyUserAuthenticated = async () => {
   // console.log("esto es auth", auth)
   if (auth.currentUser) {
     const dataUser = await findingUser(auth.currentUser.uid, collectionUser);
-
     return dataUser;
   } else {
     return undefined;

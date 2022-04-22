@@ -1,7 +1,8 @@
 import React from 'react';
 import './menu.css';
 import { Button } from './button';
-import { filterMenuByCategory, getAllCategories } from '../../../../utils/utils';
+import { filterMenuByCategory } from '../../../../utils/utils';
+import { findingCategories } from '../../../../firebase/firestore';
 
 const MenuBar = ({ setMenuValue }) => {
   const onSearchValueChange = (event) => {
@@ -14,11 +15,17 @@ const MenuBar = ({ setMenuValue }) => {
     setMenuValue(newMenu);
   };
 
+  const dataButtonCategory = async () => {
+    const buttonData = await findingCategories();
+    console.log(buttonData, 'botones a');
+    return buttonData;
+  };
+
   return (
         <>
             <section className="menu-container-father">
                 {
-                    getAllCategories().map((category, index) => {
+                    dataButtonCategory().map((category, index) => {
                       return <Button
                             clickHandler={onSearchValueChange}
                             key={index}

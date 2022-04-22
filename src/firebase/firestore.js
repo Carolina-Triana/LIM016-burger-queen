@@ -4,6 +4,7 @@ import { db } from './config';
 
 // Ref users
 export const collectionUser = collection(db, 'usuarios');
+export const collectionCategories = collection(db, 'botonCategory');
 
 // Ref orders
 const collectionOrder = collection(db, 'order');
@@ -27,6 +28,19 @@ export const findingUser = async (userId) => {
     const user = userDocument.data();
 
     return user;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+// Consigue la data de categorias
+export const findingCategories = async () => {
+  try {
+    const documentCategoryRef = doc(collectionCategories, 'botones');
+    const bottonDocument = await getDoc(documentCategoryRef);
+    const botton = bottonDocument.data();
+
+    return botton;
   } catch (error) {
     throw new Error(error);
   }

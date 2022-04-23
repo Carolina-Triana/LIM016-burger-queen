@@ -1,10 +1,11 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import './menu.css';
 import { Button } from './button';
 import { filterMenuByCategory } from '../../../../utils/utils';
 import { findingCategories } from '../../../../firebase/firestore';
 
 const MenuBar = ({ setMenuValue }) => {
+  const [buttonData, setButtonData] = useState([]);
   const onSearchValueChange = (event) => {
     const element = event.currentTarget;
     console.log(element);
@@ -15,25 +16,31 @@ const MenuBar = ({ setMenuValue }) => {
     setMenuValue(newMenu);
   };
 
-  const dataButtonCategory = async () => {
-    const buttonData = await findingCategories();
-    console.log(buttonData, 'botones a');
-    return buttonData;
-  };
+  useEffect(() => {
+    const dataButtonCategory = async () => {
+      const buttonData = await findingCategories();
+      console.log(buttonData, 'data');
+      let data = { ...buttonData };
+      data = [data];
+      console.log(data, 'dataaaa');
+      return setButtonData(data);
+    };
+    dataButtonCategory();
+  }, []);
 
   return (
         <>
             <section className="menu-container-father">
                 {
-                    dataButtonCategory().map((category, index) => {
+                    buttonData.map((category, index) => {
                       return <Button
                             clickHandler={onSearchValueChange}
                             key={index}
                             className={'btnMenuOption'}
-                            value={category.categoryName}
-                            text={category.categoryText}
-                            src={category.photo}
-                            alt={category.categoryName}
+                            value={category.bebida}
+                            text={category.bebidas.nombreCategoria}
+                            src={category.bebidas.icono}
+                            alt={category.bebida}
                         />;
                     })
                 }

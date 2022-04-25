@@ -1,0 +1,26 @@
+.yesButton{
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  border-radius: 6px;
+  background-color: rgba(185, 57, 172, 1);
+  border: none;
+}
+.noButton{
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  border-radius: 6px;
+  border: 0.5px solid white;
+  background: none;
+}
+.buttonSize{
+  font-size: 1.9vmax;
+  white-space: nowrap;
+  padding: 1vh 1vw;
+}
+.buttonContainer{
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 7vw;
+  margin-top: 5vh;
+}

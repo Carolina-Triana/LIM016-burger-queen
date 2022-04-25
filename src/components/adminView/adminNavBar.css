@@ -1,0 +1,63 @@
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.adminNavBar{
+  background-color: rgba(25, 25, 26, 1);
+  padding: 2vh 4vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+.dataBar{
+  justify-content: space-between;
+}
+.inactiveGrey{
+  background-color: rgba(46, 44, 44, 1);
+}
+.activePurple{
+  background-color: rgba(75, 22, 87, 1);
+}
+.imageContainer{
+  width: 7vmin;
+  height: 7vmin;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 6px;
+}
+.barText{
+  color: aliceblue;
+  font-size: 3vmin;
+  /* text-shadow:
+  0 0 1px #fff,
+  0 0 0px #fff,
+  0 0 10px #fff,
+  0 0 0px #5271ff,
+  0 0 82px #5271ff,
+  0 0 92px #5271ff,
+  0 0 1px #5271ff,
+  0 0 151px #5271ff; */
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.adminNavButton{
+  white-space: nowrap;
+  text-align: center;
+  height: 5.5vh;
+  border-radius: 6px;
+  border: none;
+  color: whitesmoke;
+  padding: 1vmin 1.5vmin;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2vmin;
+}
+.buttonBar{
+  display: flex;
+  gap: 1.5vw;
+}
+.textIndent{
+  text-indent: 1vw;
+}

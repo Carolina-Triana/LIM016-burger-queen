@@ -7,6 +7,7 @@ import { DeliveredOrders } from './components/waiterView/deliveredOrders/indexDe
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { KitchenMain } from './components/kitchenView/kitchenMain/kitchenMain';
 import { KitchenDelivered } from './components/kitchenView/kitchenDelivered/kitchenDelivered';
+import { AdminIndexOptions } from './components/adminView/indexAdminView';
 import { AuthSession } from './context/context';
 import { useAuth } from './firebase/auth';
 
@@ -22,6 +23,8 @@ export function App () {
         Navigate('/waiterMain');
       } else if (user.cargo === 'JEFE DE COCINA') {
         Navigate('/kitchenMain');
+      } else if (user.cargo === 'ADMINISTRADOR') {
+        Navigate('/adminMain');
       }
     }
   }, [user]);
@@ -37,6 +40,7 @@ export function App () {
         <Route path= "/waiterDelivered" element= {<DeliveredOrders/>}/>
         <Route path= "/kitchenMain" element= {<KitchenMain/>}/>
         <Route path= "/kitchenDelivered" element= {<KitchenDelivered/>}/>
+        <Route path= "/adminMain" element= {<AdminIndexOptions/>}/>
       </Routes>
         : ''}
     </div>

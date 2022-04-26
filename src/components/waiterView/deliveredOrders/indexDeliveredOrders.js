@@ -22,6 +22,10 @@ const DeliveredOrders = () => {
   const [modalDeleteOrder, setModalDeleteOrder] = useState(false);
   const colorTab = '/waiterDelivered';
 
+  const closeModal = () => {
+    setModalDeleteOrder(false);
+  };
+
   const buttonHandler = () => {
     if (tableOrderKitchen === undefined) {
       modalAlert('Selecciona un pedido');
@@ -65,7 +69,7 @@ const DeliveredOrders = () => {
                 </OrderList>
                 {tableOrderKitchen !== undefined ? <Ticket items={items[tableOrderKitchen].data} /> : <SelectAnOrder/>}
                 <ButtonOrderDelivered onClick={buttonHandler} text="ENTREGADO"/>
-                {modalDeleteOrder ? <Modal onClick={orderDeliveredModal} closeModalMenu={setModalDeleteOrder(false)} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} fue entregado?`} /> : ''}
+                {modalDeleteOrder ? <Modal onClick={orderDeliveredModal} closeModalMenu={closeModal} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} fue entregado?`} /> : ''}
             </section>
             <ToastContainer />
         </>

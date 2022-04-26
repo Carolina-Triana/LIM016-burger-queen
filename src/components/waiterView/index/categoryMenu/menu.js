@@ -5,10 +5,23 @@ import { filterMenuByCategory } from '../../../../utils/utils';
 import { findingCategories } from '../../../../firebase/firestore';
 
 const MenuBar = ({ setMenuValue }) => {
-  const [buttonData, setButtonData] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function dataCategories () {
+      try {
+        const buttonData = await findingCategories();
+        setCategories(buttonData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    dataCategories();
+  }, []);
+
+  // const [buttonData, setButtonData] = useState([]);
   const onSearchValueChange = (event) => {
     const element = event.currentTarget;
-    console.log(element);
 
     event.preventDefault();
     const newMenu = filterMenuByCategory(element.value);
@@ -16,37 +29,26 @@ const MenuBar = ({ setMenuValue }) => {
     setMenuValue(newMenu);
   };
 
-  useEffect(() => {
-    const dataButtonCategory = async () => {
-      const buttonData = await findingCategories();
-      console.log(buttonData, 'data');
-      let data = { ...buttonData };
-      data = [data];
-      console.log(data, 'dataaaa');
-      return setButtonData(data);
-    };
-    dataButtonCategory();
-  }, []);
+  const menuCategories = categories.map((cat, index) => {
+    return (
+      <Button
+        clickHandler={onSearchValueChange}
+        key={index}
+        className={'btnMenuOption'}
+        value={cat.nombre}
+        text={cat.nombre}
+        src={cat.icono}
+        alt={cat.nombre}
+      />
+    );
+  });
 
   return (
-        <>
-            <section className="menu-container-father">
-                {
-                    buttonData.map((category, index) => {
-                      return <Button
-                            clickHandler={onSearchValueChange}
-                            key={index}
-                            className={'btnMenuOption'}
-                            value={category.bebida}
-                            text={category.bebidas.nombreCategoria}
-                            src={category.bebidas.icono}
-                            alt={category.bebida}
-                        />;
-                    })
-                }
-
-            </section>
-        </>
+    <>
+        <section className="menu-container-father">
+          {menuCategories}
+        </section>
+    </>
   );
 };
 

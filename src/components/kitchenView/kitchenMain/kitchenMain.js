@@ -16,16 +16,25 @@ const KitchenMain = () => {
   const items = useDocsInRealTime(onDataOrderChange('PENDIENTE'));
   const [tableOrderKitchen, setTableOrderKitchen] = useState(undefined);
   const [showModalCompleted, setShowModalCompleted] = useState(false);
+
   const capturingTableKitchenWithAnEvent = (index) => {
     setTableOrderKitchen(index);
+    // console.log(tableOrderKitchen);
+  };
+
+  const closeModal = () => {
+    setShowModalCompleted(false);
   };
 
   const openModal = () => {
+    console.log('aaaaa', tableOrderKitchen);
     if (tableOrderKitchen === undefined) {
       modalAlert('Selecciona algun pedido');
+      console.log(showModalCompleted);
       return;
     }
     setShowModalCompleted(true);
+    console.log('else', showModalCompleted);
   };
 
   const updateOrderAndCloseModal = () => {
@@ -44,7 +53,7 @@ const KitchenMain = () => {
         <NavKitchen colorTab={colorTab} />
         <OrderList>
           {items.map((item, index) => {
-            console.log(item.data.seconds);
+            // console.log(item.data.seconds);
             return (
               <>
                 <OrderButtonsTimer
@@ -63,12 +72,9 @@ const KitchenMain = () => {
         </OrderList>
         {tableOrderKitchen !== undefined ? <Ticket items={items[tableOrderKitchen].data} /> : <SelectAnOrder/>}
 
-        <ButtonOrderDelivered
-          onClick={openModal}
-          text="LISTO"
-        />
+        <ButtonOrderDelivered onClick={openModal} text='LISTO' />
 
-        {showModalCompleted ? <Modal onClick={updateOrderAndCloseModal} closeModalMenu={setShowModalCompleted(false)} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} esta listo?`} /> : ''}
+        {showModalCompleted ? <Modal onClick={updateOrderAndCloseModal} closeModalMenu={closeModal} text={`¿El pedido de la mesa ${items[tableOrderKitchen].data.table} esta listo?`} /> : ''}
 
       </section>
       <ToastContainer />

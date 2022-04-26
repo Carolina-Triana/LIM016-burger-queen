@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './menu.css';
 import { Button } from './button';
 import { filterMenuByCategory } from '../../../../utils/utils';
-import { findingCategories, findingPrueba } from '../../../../firebase/firestore';
+import { findingCategories } from '../../../../firebase/firestore';
 
 const MenuBar = ({ setMenuValue }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function dataCategories () {
+      try {
+        const buttonData = await findingCategories();
+        setCategories(buttonData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    dataCategories();
+  }, []);
+
   const onSearchValueChange = (event) => {
     const element = event.currentTarget;
-    console.log(element);
 
     event.preventDefault();
     const newMenu = filterMenuByCategory(element.value);
@@ -15,60 +28,24 @@ const MenuBar = ({ setMenuValue }) => {
     setMenuValue(newMenu);
   };
 
-  const dataButtonCategory = async () => {
-    const buttonData = await findingCategories();
-    // console.log(Object.keys(buttonData), 'botones a');
-    // return Object.keys(buttonData);
-    console.log(buttonData);
-    return buttonData;
-  };
-
-  const dataPrueba = async () => {
-    const buttonData = await findingPrueba();
-    // console.log(Object.keys(buttonData), 'botones a');
-    // return Object.keys(buttonData);
-    console.log(buttonData);
-    return buttonData;
-  };
-
-  dataPrueba()
-    .then(data => {
-      console.log(data);
-    });
+  const menuCategories = categories.map((cat, index) => {
+    return (
+      <Button
+        clickHandler={onSearchValueChange}
+        key={index}
+        className={'btnMenuOption'}
+        value={cat.nombre}
+        text={cat.nombre}
+        src={cat.icono}
+        alt={cat.nombre}
+      />
+    );
+  });
 
   return (
     <>
         <section className="menu-container-father">
-            {
-              dataButtonCategory()
-                .then(data => {
-                  const llaves = Object.key(data);
-                  llaves.map((key, index) => {
-                    console.log(Object.key(data));
-                    return <Button
-                    clickHandler={onSearchValueChange}
-                    key={index}
-                    className={'btnMenuOption'}
-                    value={key.nombreCategoria}
-                    text={key.nombreCategoria}
-                    src={key.icono}
-                    alt={key.nombreCategoria}
-                  />;
-                  });
-                })
-                // dataButtonCategory().map((key, index) => {
-                //   return <Button
-                //         clickHandler={onSearchValueChange}
-                //         key={index}
-                //         className={'btnMenuOption'}
-                //         value={key.nombreCategoria}
-                //         text={key.nombreCategoria}
-                //         src={key.icono}
-                //         alt={key.nombreCategoria}
-                //     />;
-                // })
-            }
-
+          {menuCategories}
         </section>
     </>
   );

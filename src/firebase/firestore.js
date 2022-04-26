@@ -1,11 +1,12 @@
 
-import { collection, doc, getDoc, getDocs, addDoc, query, onSnapshot, orderBy, where, updateDoc, deleteDoc } from '@firebase/firestore';
+import { collection, doc, getDoc, addDoc, query, onSnapshot, orderBy, where, updateDoc, deleteDoc } from '@firebase/firestore';
 import { db } from './config';
 
 // Ref users
 export const collectionUser = collection(db, 'usuarios');
-export const collectionCategories = collection(db, 'botonCategory');
-export const collectionPrueba = collection(db, 'prueba');
+
+// Ref categories
+export const collectionCategories = collection(db, 'categoriasMenu');
 
 // Ref orders
 const collectionOrder = collection(db, 'order');
@@ -37,24 +38,11 @@ export const findingUser = async (userId) => {
 // Consigue la data de categorias
 export const findingCategories = async () => {
   try {
-    const documentCategoryRef = doc(collectionCategories, 'botones');
+    const documentCategoryRef = doc(collectionCategories, 'categorias');
     const bottonDocument = await getDoc(documentCategoryRef);
     const botton = bottonDocument.data();
 
-    return botton;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
-// Superprueba explotadora 2000
-export const findingPrueba = async () => {
-  try {
-    const documentPruebaRef = doc(collectionCategories);
-    const bottonDocument = await getDocs(documentPruebaRef);
-    // const botton = bottonDocument.data();
-    console.log(bottonDocument);
-    return bottonDocument;
+    return botton.cat;
   } catch (error) {
     throw new Error(error);
   }

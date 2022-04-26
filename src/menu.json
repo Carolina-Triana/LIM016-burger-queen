@@ -3,222 +3,222 @@
         "items": [
             {
                 "name": "CAFÉ AMERICANO",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 5
             },
             {
                 "name": "CAPUCCINO",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 7
             },
             {
                 "name": "MOCACCINO",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 10
             },
             {
                 "name": "ICE LATTE",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 15
             },
             {
                 "name": "FRAPPUCCINO CLÁSICO",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 18
             },
             {
                 "name": "FRAPPUCCINO CARAMEL",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 18
             },
             {
                 "name": "CAFÉ LATTE",
-                "category": "cafes",
+                "category": "CAFES",
                 "price": 7
             },
             {
                 "name": "COCA COLA 600ml",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "AGUA 500 ml",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "INCA COLA 600ml",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "FANTA 600ml",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "JARRA LIMONADA",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 15
             },
             {
                 "name": "JARRA CHICHA MORADA",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 15
             },
             {
                 "name": "JARRA MARACUYÁ",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 15
             },
             {
                 "name": "COPA LIMONADA",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "COPA CHICHA MORADA",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "COPA MARACUYÁ",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "COPA DE NESTEA",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 5
             },
             {
                 "name": "MILKSHAKE FRESA",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 15
             },
             {
                 "name": "MILKSHAKE CHOCOLATE",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 15
             },
             {
                 "name": "MILKSHAKE OREO",
-                "category": "bebidas",
+                "category": "BEBIDAS",
                 "price": 15
             },
             {
                 "name": "HAMBURGUESA CLÁSICA CARNE",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 15
             },
             {
                 "name": "HAMBURGUESA CLÁSICA POLLO",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 15
             },
             {
                 "name": "HAMBURGUESA VEGETARIANA",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 20
             },
             {
                 "name": "HAMBURGUESA DOBLE CARNE",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 25
             },
             {
                 "name": "HAMBURGUESA DOBLE POLLO",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 25
             },
             {
                 "name": "HAMBURGUESA DOBLE MIXTA",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 25
             },
             {
                 "name": "HAMBURGUESA POLLO CRISPY",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 20
             },
             {
                 "name": "HAMBURGUESA ROYAL CARNE",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 20
             },
             {
                 "name": "HAMBURGUESA ROYAL POLLO",
-                "category": "hamburguesa",
+                "category": "BURGER",
                 "price": 20
             },
             {
                 "name": "HUEVO",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 3
             },
             {
                 "name": "QUESO GOUDA",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 3
             },
             {
                 "name": "TOCINO",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 3
             },
             {
                 "name": "PORCIÓN PAPAS",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 10
             },
             {
                 "name": "PORCIÓN CAMOTE FRITO",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 10
             },
             {
                 "name": "TEQUEÑOS DE QUESO",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 15
             },
             {
                 "name": "BOLA DE HELADO",
-                "category": "extras",
+                "category": "EXTRAS",
                 "price": 5
             },
             {
                 "name": "HELADO BANANA SPLIT",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             },
             {
                 "name": "BROWNIE CON HELADO",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             },
             {
                 "name": "PIE DE LIMÓN",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             },
             {
                 "name": "PIE DE MANZANA",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             },
             {
                 "name": "TARTALETA DE FRESA",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             },
             {
                 "name": "CHURROS CON CHOCOLATE",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             },
             {
                 "name": "CHURROS CON MANJAR",
-                "category": "postres",
+                "category": "POSTRES",
                 "price": 15
             }
         ]

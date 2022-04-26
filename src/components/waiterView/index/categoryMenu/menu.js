@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import './menu.css';
 import { Button } from './button';
 import { filterMenuByCategory } from '../../../../utils/utils';
@@ -19,6 +19,7 @@ const MenuBar = ({ setMenuValue }) => {
     dataCategories();
   }, []);
 
+  // const [buttonData, setButtonData] = useState([]);
   const onSearchValueChange = (event) => {
     const element = event.currentTarget;
 
